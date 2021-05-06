@@ -12,6 +12,7 @@ URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPi
 pincode = "<insert_pincode>"
 # insert the start dates of the weeks you want to check vaccine availability for
 dates = ["10-05-2021", "17-05-2021", "24-05-2021"]
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
 # sender's credentials
 # you would have turn on 'access for less secure apps' for the sender's google account 
@@ -27,7 +28,7 @@ recheck_after = 60
 while True:
 	for date in dates:
 		PARAMS = {'pincode':pincode, 'date':date}
-		r = requests.get(url = URL, params = PARAMS)
+		r = requests.get(url = URL, params = PARAMS, headers = headers)
 		  
 		data = r.json()
 		for center in data['centers']:
